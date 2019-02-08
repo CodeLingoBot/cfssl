@@ -30,7 +30,7 @@ const (
 	interL2Key          = "testdata/inter-L2.key"
 )
 
-// Simply create a bundler
+// TestNewBundler checks a case when Simply create a bundler
 func TestNewBundler(t *testing.T) {
 	newBundler(t)
 }
@@ -81,7 +81,7 @@ type bundleObject struct {
 var godaddyIssuerString = `/Country=US/Organization=The Go Daddy Group, Inc./OrganizationalUnit=Go Daddy Class 2 Certification Authority`
 var godaddySubjectString = `/Country=US/Province=Arizona/Locality=Scottsdale/Organization=GoDaddy.com, Inc./OrganizationalUnit=http://certificates.godaddy.com/repository/CommonName=Go Daddy Secure Certification Authority/SerialNumber=07969287`
 
-// Test marshal to JSON
+// TestBundleMarshalJSON tests marshal to JSON
 // Also serves as a JSON format regression test.
 func TestBundleMarshalJSON(t *testing.T) {
 	b := newBundler(t)
@@ -232,7 +232,7 @@ func TestBundleWithRSAKeyMarshalJSON(t *testing.T) {
 
 }
 
-// Test marshal to JSON on hostnames
+// TestBundleHostnamesMarshalJSON tests marshal to JSON on hostnames
 func TestBundleHostnamesMarshalJSON(t *testing.T) {
 	b := newBundler(t)
 
@@ -245,7 +245,7 @@ func TestBundleHostnamesMarshalJSON(t *testing.T) {
 
 }
 
-// Tests on verifying the rebundle flag and error code in Bundle.Status when rebundling.
+// TestRebundleFromPEM tests on verifying the rebundle flag and error code in Bundle.Status when rebundling.
 func TestRebundleFromPEM(t *testing.T) {
 	newBundler := newCustomizedBundlerFromFile(t, testCFSSLRootBundle, interL1, "")
 	newBundle, err := newBundler.BundleFromPEMorDER(expiredBundlePEM, nil, Optimal, "")
@@ -278,7 +278,7 @@ func TestRebundleFromPEM(t *testing.T) {
 
 }
 
-// Test on verifying ubiquitous messaging in Bundle.Status.
+// TestUbiquitousBundle tests on verifying ubiquitous messaging in Bundle.Status.
 func TestUbiquitousBundle(t *testing.T) {
 	L1Cert := readCert(interL1)
 	// Simulate the case that L1Cert is added to trust store by one platform but not yet in another.
@@ -361,7 +361,7 @@ func checkUbiquityWarningAndCode(t *testing.T, bundle *Bundle, expected bool) {
 	}
 }
 
-// Regression test on bundle with all flavors:
+// TestForceBundle; Regression test on bundle with all flavors:
 // Ubiquitous bundle optimizes bundle length given the platform ubiquity is the same; Force bundle
 // with return the same bundle; Optimal bundle always chooses shortest bundle length.
 func TestForceBundle(t *testing.T) {
@@ -556,7 +556,7 @@ func TestForceBundleNoFallback(t *testing.T) {
 
 }
 
-// Regression test: ubiquity bundle test with SHA2-homogeneous preference should not override root ubiquity.
+// TestSHA2HomogeneityAgainstUbiquity; Regression test: ubiquity bundle test with SHA2-homogeneous preference should not override root ubiquity.
 func TestSHA2HomogeneityAgainstUbiquity(t *testing.T) {
 	// create a CA signer and signs a new intermediate with SHA-1
 	caSigner := makeCASignerFromFile(testCAFile, testCAKeyFile, x509.SHA1WithRSA, t)
@@ -695,7 +695,7 @@ func checkECDSAWarningAndCode(t *testing.T, bundle *Bundle, expected bool) {
 	}
 }
 
-// Regression test on SHA-2 Warning
+// TestSHA2Warning; Regression test on SHA-2 Warning
 // Riot Games once bundle a cert issued by DigiCert SHA2 High Assurance Server CA. The resulting
 // bundle uses SHA-256 which is not supported in Windows XP SP2. We should present a warning
 // on this.
@@ -731,7 +731,7 @@ func TestSHA2Warning(t *testing.T) {
 	checkSHA2WarningAndCode(t, ubiquitousBundle, true)
 }
 
-// Regression test on ECDSA Warning
+// TestECDSAWarning; Regression test on ECDSA Warning
 // A test bundle that contains ECDSA384 and SHA-2. Expect ECDSA warning and SHA-2 warning.
 func TestECDSAWarning(t *testing.T) {
 	b := newCustomizedBundlerFromFile(t, testCAFile, interL1SHA1, "")
@@ -764,7 +764,7 @@ func newBundler(t *testing.T) (b *Bundler) {
 	return
 }
 
-// newBundler creates bundler from byte slices of CA certs and intermediate certs in PEM format
+// newBundlerFromPEM creates bundler from byte slices of CA certs and intermediate certs in PEM format
 func newBundlerFromPEM(t *testing.T, caBundlePEM, intBundlePEM []byte) (b *Bundler) {
 	b, err := NewBundlerFromPEM(caBundlePEM, intBundlePEM)
 	if err != nil {
@@ -773,7 +773,7 @@ func newBundlerFromPEM(t *testing.T, caBundlePEM, intBundlePEM []byte) (b *Bundl
 	return
 }
 
-// newCustomizedBundleCreator is a helper function that returns a new Bundler
+// newCustomizedBundlerFromFile is a helper function that returns a new Bundler
 // takes specified CA bundle, intermediate bundle, and any additional intermdiate certs to generate a bundler.
 func newCustomizedBundlerFromFile(t *testing.T, caBundle, intBundle, adhocInters string) (b *Bundler) {
 	b, err := NewBundler(caBundle, intBundle)
@@ -827,7 +827,7 @@ func newBundlerWithoutRootsAndInters(t *testing.T) *Bundler {
 	return b
 }
 
-// A helper function that returns a errorCallback function which expects certain error content in
+// ExpectErrorMessage; A helper function that returns a errorCallback function which expects certain error content in
 // an error message.
 func ExpectErrorMessage(expectedErrorContent string) func(*testing.T, error) {
 	return func(t *testing.T, err error) {
@@ -839,7 +839,7 @@ func ExpectErrorMessage(expectedErrorContent string) func(*testing.T, error) {
 	}
 }
 
-// A helper function that returns a errorCallback function which inspect error message for
+// ExpectErrorMessages; A helper function that returns a errorCallback function which inspect error message for
 // all expected messages.
 func ExpectErrorMessages(expectedContents []string) func(*testing.T, error) {
 	return func(t *testing.T, err error) {
@@ -855,7 +855,7 @@ func ExpectErrorMessages(expectedContents []string) func(*testing.T, error) {
 	}
 }
 
-// A helper function that returns a bundle chain length checking function
+// ExpectBundleLength; A helper function that returns a bundle chain length checking function
 func ExpectBundleLength(expectedLen int) func(*testing.T, *Bundle) {
 	return func(t *testing.T, bundle *Bundle) {
 		if bundle == nil {

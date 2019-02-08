@@ -11,7 +11,7 @@ import (
 	"unsafe"
 )
 
-// Creates a new *syscall.CertContext representing the leaf certificate in an in-memory
+// createStoreContext; a new *syscall.CertContext representing the leaf certificate in an in-memory
 // certificate store containing itself and all of the intermediate certificates specified
 // in the opts.Intermediates CertPool.
 //
@@ -139,7 +139,7 @@ func checkChainSSLServerPolicy(c *Certificate, chainCtx *syscall.CertChainContex
 	return nil
 }
 
-// Note(kyle): not sure how this works on windows, or if this does.
+// initSystemRoots; Note(kyle): not sure how this works on windows, or if this does.
 func initSystemRoots() []*x509.Certificate {
 	return nil
 }

@@ -12,7 +12,7 @@ import (
 	"github.com/kisielk/sqlstruct"
 )
 
-// Match to sqlx
+// init; Match to sqlx
 func init() {
 	sqlstruct.TagName = "db"
 }

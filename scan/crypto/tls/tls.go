@@ -275,7 +275,7 @@ func X509KeyPair(certPEMBlock, keyPEMBlock []byte) (Certificate, error) {
 	return cert, nil
 }
 
-// Attempt to parse the given private key DER block. OpenSSL 0.9.8 generates
+// parsePrivateKey; Attempt to parse the given private key DER block. OpenSSL 0.9.8 generates
 // PKCS#1 private keys by default, while OpenSSL 1.0.0 generates PKCS#8 keys.
 // OpenSSL ecparam generates SEC1 EC private keys for ECDSA. We try all three.
 func parsePrivateKey(der []byte) (crypto.PrivateKey, error) {

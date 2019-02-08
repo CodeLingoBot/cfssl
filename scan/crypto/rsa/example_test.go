@@ -16,7 +16,7 @@ import (
 	"os"
 )
 
-// RSA is able to encrypt only a very limited amount of data. In order
+// ExampleDecryptPKCS1v15SessionKey; RSA is able to encrypt only a very limited amount of data. In order
 // to encrypt reasonable amounts of data a hybrid scheme is commonly
 // used: RSA is used to encrypt a key for a symmetric primitive like
 // AES-GCM.

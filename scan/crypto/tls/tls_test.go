@@ -192,7 +192,7 @@ func TestDialTimeout(t *testing.T) {
 	}
 }
 
-// tests that Conn.Read returns (non-zero, io.EOF) instead of
+// TestConnReadNonzeroAndEOF tests that Conn.Read returns (non-zero, io.EOF) instead of
 // (non-zero, nil) when a Close (alertCloseNotify) is sitting right
 // behind the application data in the buffer.
 func TestConnReadNonzeroAndEOF(t *testing.T) {

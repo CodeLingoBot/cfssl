@@ -15,7 +15,7 @@ import (
 	"hash"
 )
 
-// Split a premaster secret in two as specified in RFC 4346, section 5.
+// splitPreMasterSecret; a premaster secret in two as specified in RFC 4346, section 5.
 func splitPreMasterSecret(secret []byte) (s1, s2 []byte) {
 	s1 = secret[0 : (len(secret)+1)/2]
 	s2 = secret[len(secret)/2:]

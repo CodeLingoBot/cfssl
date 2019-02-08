@@ -12,7 +12,7 @@ package system
 */
 import "C"
 
-// For Go versions before 1.10, nil values for Apple's CoreFoundation
+// setNilCFRef; For Go versions before 1.10, nil values for Apple's CoreFoundation
 // CF*Ref types were represented by nil.  See:
 //   https://github.com/golang/go/commit/b868616b63a8
 func setNilCFRef(v *C.CFDataRef) {

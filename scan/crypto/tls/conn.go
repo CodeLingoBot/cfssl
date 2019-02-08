@@ -684,7 +684,7 @@ Again:
 	return c.in.err
 }
 
-// sendAlert sends a TLS alert message.
+// sendAlertLocked sends a TLS alert message.
 // c.out.Mutex <= L.
 func (c *Conn) sendAlertLocked(err alert) error {
 	switch err {

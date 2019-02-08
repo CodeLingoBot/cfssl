@@ -375,7 +375,7 @@ func reverse(certs []*x509.Certificate) []*x509.Certificate {
 	return rcerts
 }
 
-// Check if the certs form a partial cert chain: every cert verifies
+// partialVerify checks if the certs form a partial cert chain: every cert verifies
 // the signature of the one in front of it.
 func partialVerify(certs []*x509.Certificate) bool {
 	n := len(certs)
@@ -792,7 +792,7 @@ func untrustedPlatformsWarning(platforms []string) string {
 	return msg
 }
 
-// Optimal chains are the shortest chains, with newest intermediates and most advanced crypto suite being the tie breaker.
+// optimalChains chains are the shortest chains, with newest intermediates and most advanced crypto suite being the tie breaker.
 func optimalChains(chains [][]*x509.Certificate) [][]*x509.Certificate {
 	// Find shortest chains
 	chains = ubiquity.Filter(chains, ubiquity.CompareChainLength)
@@ -804,7 +804,7 @@ func optimalChains(chains [][]*x509.Certificate) [][]*x509.Certificate {
 	return chains
 }
 
-// Ubiquitous chains are the chains with highest platform coverage and break ties with the optimal strategy.
+// ubiquitousChains chains are the chains with highest platform coverage and break ties with the optimal strategy.
 func ubiquitousChains(chains [][]*x509.Certificate) [][]*x509.Certificate {
 	// Filter out chains with highest cross platform ubiquity.
 	chains = ubiquity.Filter(chains, ubiquity.ComparePlatformUbiquity)

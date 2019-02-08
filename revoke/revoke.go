@@ -35,7 +35,7 @@ var HardFail = false
 var CRLSet = map[string]*pkix.CertificateList{}
 var crlLock = new(sync.Mutex)
 
-// We can't handle LDAP certificates, so this checks to see if the
+// ldapURL; We can't handle LDAP certificates, so this checks to see if the
 // URL string points to an LDAP resource so that we can ignore it.
 func ldapURL(url string) bool {
 	u, err := neturl.Parse(url)
@@ -130,7 +130,7 @@ func getIssuer(cert *x509.Certificate) *x509.Certificate {
 
 }
 
-// check a cert against a specific CRL. Returns the same bool pair
+// certIsRevokedCRL checks a cert against a specific CRL. Returns the same bool pair
 // as revCheck, plus an error if one occurred.
 func certIsRevokedCRL(cert *x509.Certificate, url string) (revoked, ok bool, err error) {
 	crl, ok := CRLSet[url]

@@ -399,7 +399,7 @@ func (p *SigningProfile) Usages() (ku x509.KeyUsage, eku []x509.ExtKeyUsage, unk
 	return
 }
 
-// A valid profile must be a valid local profile or a valid remote profile.
+// validProfile; A valid profile must be a valid local profile or a valid remote profile.
 // A valid local profile has defined at least key usages to be used, and a
 // valid local default profile has defined at least a default expiration.
 // A valid remote profile (default or not) has remote signer initialized.
@@ -465,7 +465,7 @@ func (p *SigningProfile) validProfile(isDefault bool) bool {
 	return true
 }
 
-// This checks if the SigningProfile object contains configurations that are only effective with a local signer
+// hasLocalConfig checks if the SigningProfile object contains configurations that are only effective with a local signer
 // which has access to CA private key.
 func (p *SigningProfile) hasLocalConfig() bool {
 	if p.Usage != nil ||

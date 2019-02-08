@@ -106,7 +106,7 @@ func TestLarge(t *testing.T) {
 	}
 }
 
-// Tests that blockGeneric (pure Go) and block (in assembly for amd64, 386, arm) match.
+// TestBlockGeneric tests that blockGeneric (pure Go) and block (in assembly for amd64, 386, arm) match.
 func TestBlockGeneric(t *testing.T) {
 	gen, asm := New().(*digest), New().(*digest)
 	buf := make([]byte, BlockSize*20) // arbitrary factor

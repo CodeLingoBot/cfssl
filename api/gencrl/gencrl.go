@@ -25,7 +25,7 @@ type jsonCRLRequest struct {
 	ExpiryTime   string   `json:"expireTime"`
 }
 
-// Handle responds to requests for crl generation. It creates this crl
+// gencrlHandler responds to requests for crl generation. It creates this crl
 // based off of the given certificate, serial numbers, and private key
 func gencrlHandler(w http.ResponseWriter, r *http.Request) error {
 	var revokedCerts []pkix.RevokedCertificate

@@ -32,12 +32,12 @@ var authTypes = map[string]func(config.AuthKey, []byte) (auth.Provider, error){
 	"standard": newStandardProvider,
 }
 
-// Create a standard provider without providing any additional data.
+// newStandardProvider; Create a standard provider without providing any additional data.
 func newStandardProvider(ak config.AuthKey, ad []byte) (auth.Provider, error) {
 	return auth.New(ak.Key, ad)
 }
 
-// Create a new provider from an authentication key and possibly
+// newProvider; Create a new provider from an authentication key and possibly
 // additional data.
 func newProvider(ak config.AuthKey, ad []byte) (auth.Provider, error) {
 	// If no auth key was provided, use unauthenticated
@@ -72,7 +72,7 @@ func ipIsLocal(ip net.IP) bool {
 	return v4Loopback.Contains(ip)
 }
 
-// The only time a client should be doing unauthenticated requests is
+// validateAuth; The only time a client should be doing unauthenticated requests is
 // when a local CFSSL is being used.
 func (cap *CFSSL) validateAuth() error {
 	// The client is using some form of authentication, and the best way
@@ -105,7 +105,7 @@ var cfsslConfigDirs = []string{
 	"/state/etc/cfssl",
 }
 
-// The CFSSL standard is to have a configuration file for a label as
+// findLabel; The CFSSL standard is to have a configuration file for a label as
 // <config>.json.
 func findLabel(label string) *config.Config {
 	for _, dir := range cfsslConfigDirs {

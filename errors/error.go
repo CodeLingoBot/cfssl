@@ -212,7 +212,7 @@ const (
 	RecordNotFound
 )
 
-// The error interface implementation, which formats to a JSON object string.
+// Error; interface implementation, which formats to a JSON object string.
 func (e *Error) Error() string {
 	marshaled, err := json.Marshal(e)
 	if err != nil {

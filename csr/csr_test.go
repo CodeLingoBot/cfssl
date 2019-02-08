@@ -667,7 +667,7 @@ func TestReGenerate(t *testing.T) {
 	}
 }
 
-// TestBadReGenerator ensures that a request that fails the ParseCSR is
+// TestBadReGenerate ensures that a request that fails the ParseCSR is
 // not processed.
 func TestBadReGenerate(t *testing.T) {
 	var req = &CertificateRequest{

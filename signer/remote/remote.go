@@ -65,7 +65,7 @@ func (s *Signer) Info(req info.Req) (resp *info.Resp, err error) {
 	return
 }
 
-// Helper function to perform a remote sign or info request.
+// remoteOp; Helper function to perform a remote sign or info request.
 func (s *Signer) remoteOp(req interface{}, profile, target string) (resp interface{}, err error) {
 	jsonData, err := json.Marshal(req)
 	if err != nil {

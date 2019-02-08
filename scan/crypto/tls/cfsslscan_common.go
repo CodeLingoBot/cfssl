@@ -114,7 +114,7 @@ type CipherSuite struct {
 	EllipticCurve bool
 }
 
-// Returns the (short) name of the cipher suite.
+// String returns the (short) name of the cipher suite.
 func (c CipherSuite) String() string {
 	if c.ShortName != "" {
 		return c.ShortName

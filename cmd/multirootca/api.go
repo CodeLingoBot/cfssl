@@ -57,7 +57,7 @@ func initStats() {
 	stats.ErrorRate = metrics.NewRegisteredMeter("error-rate", stats.Registry)
 }
 
-// incError increments the error count and updates the error percentage.
+// incErrors increments the error count and updates the error percentage.
 func incErrors() {
 	stats.ErrorRate.Mark(1)
 	eCtr := float64(stats.ErrorRate.Count())

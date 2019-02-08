@@ -343,7 +343,7 @@ func sigAlgsScan(addr, hostname string) (grade Grade, output Output, err error) 
 	return
 }
 
-// certSigAlgScan returns the server certificate with various sigature and hash algorithms in the ClientHello
+// certSigAlgsScan returns the server certificate with various sigature and hash algorithms in the ClientHello
 func certSigAlgsScan(addr, hostname string) (grade Grade, output Output, err error) {
 	var certSigAlgs = make(map[string]string)
 	for _, sigAlg := range tls.AllSignatureAndHashAlgorithms {
@@ -372,7 +372,7 @@ func certSigAlgsScan(addr, hostname string) (grade Grade, output Output, err err
 
 }
 
-// certSigAlgScan returns the server certificate with various ciphers in the ClientHello
+// certSigAlgsScanByCipher returns the server certificate with various ciphers in the ClientHello
 func certSigAlgsScanByCipher(addr, hostname string) (grade Grade, output Output, err error) {
 	var certSigAlgs = make(map[string]string)
 	for cipherID := range tls.CipherSuites {

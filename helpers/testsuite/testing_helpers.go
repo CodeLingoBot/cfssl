@@ -307,7 +307,7 @@ func SignCertificate(request csr.CertificateRequest, signerCert, signerKey []byt
 	return encodedCert, encodedCSRKey, nil
 }
 
-// Creates a temporary file with the given data. Returns the file name.
+// createTempFile creates a temporary file with the given data. Returns the file name.
 func createTempFile(data []byte) (fileName string, err error) {
 	// Avoid overwriting a file in the currect directory by choosing an unused
 	// file name.
@@ -332,7 +332,7 @@ func createTempFile(data []byte) (fileName string, err error) {
 	return tempFileName, nil
 }
 
-// Checks the CLI Output for failure.
+// checkCLIOutput checks the CLI Output for failure.
 func checkCLIOutput(CLIOutput []byte) error {
 	outputString := string(CLIOutput)
 	// Proper output will contain the substring "---BEGIN" somewhere
@@ -343,7 +343,7 @@ func checkCLIOutput(CLIOutput []byte) error {
 	return nil
 }
 
-// Returns the cleaned up PEM encoding for the item specified (for example,
+// cleanCLIOutput returns the cleaned up PEM encoding for the item specified (for example,
 // 'cert' or 'key').
 func cleanCLIOutput(CLIOutput []byte, item string) (cleanedOutput []byte, err error) {
 	outputString := string(CLIOutput)

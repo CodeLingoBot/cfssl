@@ -326,7 +326,7 @@ func TestCreateSelfSignedCert(t *testing.T) {
 
 }
 
-// Compare two x509 certificate chains. We only compare relevant data to
+// chainsEqual compares two x509 certificate chains. We only compare relevant data to
 // determine equality.
 func chainsEqual(chain1, chain2 []*x509.Certificate) bool {
 	if len(chain1) != len(chain2) {
@@ -343,7 +343,7 @@ func chainsEqual(chain1, chain2 []*x509.Certificate) bool {
 	return true
 }
 
-// When comparing certificates created at different times for equality, we do
+// nullifyTimeDependency; When comparing certificates created at different times for equality, we do
 // not want to worry about fields which are dependent on the time of creation.
 // Thus we nullify these fields before comparing the certificates.
 func nullifyTimeDependency(cert *x509.Certificate) *x509.Certificate {
@@ -369,7 +369,7 @@ func nullifyTimeDependency(cert *x509.Certificate) *x509.Certificate {
 	return cert
 }
 
-// Compares two structs and returns a list containing the names of all fields
+// checkFields compares two structs and returns a list containing the names of all fields
 // for which the two structs hold different values.
 func checkFields(struct1, struct2 interface{}, typeOfStructs reflect.Type) []string {
 	v1 := reflect.ValueOf(struct1)
@@ -385,7 +385,7 @@ func checkFields(struct1, struct2 interface{}, typeOfStructs reflect.Type) []str
 	return unequalFields
 }
 
-// Runs checkFields on the corresponding elements of chain1 and chain2. Element
+// checkFieldsOfChains runs checkFields on the corresponding elements of chain1 and chain2. Element
 // i of the returned slice contains a slice of the fields for which certificate
 // i in chain1 had different values than certificate i of chain2.
 func checkFieldsOfChains(chain1, chain2 []*x509.Certificate) [][]string {
@@ -401,7 +401,7 @@ func checkFieldsOfChains(chain1, chain2 []*x509.Certificate) [][]string {
 	return unequalFields
 }
 
-// Compares a certificate to a request. Returns (true, []) if both items
+// certEqualsRequest compares a certificate to a request. Returns (true, []) if both items
 // contain matching data (for the things that can match). Otherwise, returns
 // (false, unequalFields) where unequalFields contains the names of all fields
 // which did not match.
@@ -473,7 +473,7 @@ func certEqualsRequest(cert *x509.Certificate, request csr.CertificateRequest) (
 	return equal, unequalFields
 }
 
-// Returns a random element of the input slice.
+// randomElement returns a random element of the input slice.
 func randomElement(set []string) string {
 	return set[rand.Intn(len(set))]
 }

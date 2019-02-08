@@ -739,7 +739,7 @@ func TestHandshakeServerSNI(t *testing.T) {
 	runServerTestTLS12(t, test)
 }
 
-// TestHandshakeServerSNICertForName is similar to TestHandshakeServerSNI, but
+// TestHandshakeServerSNIGetCertificate is similar to TestHandshakeServerSNI, but
 // tests the dynamic GetCertificate method
 func TestHandshakeServerSNIGetCertificate(t *testing.T) {
 	config := *testConfig
@@ -759,7 +759,7 @@ func TestHandshakeServerSNIGetCertificate(t *testing.T) {
 	runServerTestTLS12(t, test)
 }
 
-// TestHandshakeServerSNICertForNameNotFound is similar to
+// TestHandshakeServerSNIGetCertificateNotFound checks a case when is similar to
 // TestHandshakeServerSNICertForName, but tests to make sure that when the
 // GetCertificate method doesn't return a cert, we fall back to what's in
 // the NameToCertificate map.
@@ -777,7 +777,7 @@ func TestHandshakeServerSNIGetCertificateNotFound(t *testing.T) {
 	runServerTestTLS12(t, test)
 }
 
-// TestHandshakeServerSNICertForNameError tests to make sure that errors in
+// TestHandshakeServerSNIGetCertificateError tests to make sure that errors in
 // GetCertificate result in a tls alert.
 func TestHandshakeServerSNIGetCertificateError(t *testing.T) {
 	const errMsg = "TestHandshakeServerSNIGetCertificateError error"
@@ -826,7 +826,7 @@ func TestHandshakeServerEmptyCertificates(t *testing.T) {
 	testClientHelloFailure(t, &serverConfig, clientHello, "no certificates")
 }
 
-// TestCipherSuiteCertPreferance ensures that we select an RSA ciphersuite with
+// TestCipherSuiteCertPreferenceECDSA ensures that we select an RSA ciphersuite with
 // an RSA certificate and an ECDSA ciphersuite with an ECDSA certificate.
 func TestCipherSuiteCertPreferenceECDSA(t *testing.T) {
 	config := *testConfig

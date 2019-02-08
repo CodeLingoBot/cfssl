@@ -43,7 +43,7 @@ const (
 
 var expiry = 1 * time.Minute
 
-// Start a signer with the testing RSA CA cert and key.
+// newTestSigner starts a signer with the testing RSA CA cert and key.
 func newTestSigner(t *testing.T) (s *Signer) {
 	s, err := NewSignerFromFile(testCaFile, testCaKeyFile, nil)
 	if err != nil {
@@ -259,7 +259,7 @@ type csrTest struct {
 	errorCallback func(*testing.T, error)
 }
 
-// A helper function that returns a errorCallback function which expects an error.
+// ExpectError; A helper function that returns a errorCallback function which expects an error.
 func ExpectError() func(*testing.T, error) {
 	return func(t *testing.T, err error) {
 		if err == nil {

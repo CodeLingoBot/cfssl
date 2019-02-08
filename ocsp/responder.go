@@ -212,7 +212,7 @@ func overrideHeaders(response http.ResponseWriter, headers http.Header) {
 	}
 }
 
-// A Responder can process both GET and POST requests.  The mapping
+// ServeHTTP; A Responder can process both GET and POST requests.  The mapping
 // from an OCSP request to an OCSP response is done by the Source;
 // the Responder simply decodes the request, and passes back whatever
 // response is provided by the source.

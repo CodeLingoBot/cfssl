@@ -11,7 +11,7 @@ import (
 	"github.com/cloudflare/cfssl/helpers"
 )
 
-// Compute the priority of different hash algorithm based on security
+// hashPriority; Compute the priority of different hash algorithm based on security
 // SHA2 > SHA1 >> MD = Others = Unknown
 func hashPriority(cert *x509.Certificate) int {
 	switch cert.SignatureAlgorithm {
@@ -26,7 +26,7 @@ func hashPriority(cert *x509.Certificate) int {
 	}
 }
 
-// Compute the priority of different key algorithm based performance and security
+// keyAlgoPriority; Compute the priority of different key algorithm based performance and security
 // ECDSA>RSA>DSA>Unknown
 func keyAlgoPriority(cert *x509.Certificate) int {
 	switch cert.PublicKeyAlgorithm {

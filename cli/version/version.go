@@ -32,7 +32,7 @@ func FormatVersion() string {
 	return fmt.Sprintf("Version: %s\nRevision: %s\nRuntime: %s\n", versionString(), version.Revision, runtime.Version())
 }
 
-// The main functionality of 'cfssl version' is to print out the version info.
+// versionMain; The main functionality of 'cfssl version' is to print out the version info.
 func versionMain(args []string, c cli.Config) (err error) {
 	fmt.Printf("%s", FormatVersion())
 	return nil

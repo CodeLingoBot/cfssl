@@ -249,7 +249,7 @@ func TestRemoteSignBadServerAndOverride(t *testing.T) {
 
 }
 
-// helper functions
+// newRemoteSigner; helper functions
 func newRemoteSigner(t *testing.T, policy *config.Signing) *Signer {
 	s, err := NewSigner(policy)
 	if err != nil {

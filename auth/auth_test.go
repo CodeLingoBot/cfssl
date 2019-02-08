@@ -43,7 +43,7 @@ var (
 	}
 )
 
-// Sanity check: can a newly-generated token be verified?
+// TestVerifyTrue checks a case when Sanity check: can a newly-generated token be verified?
 func TestVerifyTrue(t *testing.T) {
 	var err error
 
@@ -66,7 +66,7 @@ func TestVerifyTrue(t *testing.T) {
 	}
 }
 
-// Sanity check: ensure that additional data is actually used in
+// TestVerifyAD checks a case when Sanity check: ensure that additional data is actually used in
 // verification.
 func TestVerifyAD(t *testing.T) {
 	if testProvider.Verify(testRequest1B) {
@@ -78,7 +78,7 @@ func TestVerifyAD(t *testing.T) {
 	}
 }
 
-// Sanity check: verification fails if tokens are not the same length.
+// TestTokenLength checks a case when Sanity check: verification fails if tokens are not the same length.
 func TestTokenLength(t *testing.T) {
 	token := testRequest1A.Token[:]
 	testRequest1A.Token = testRequest1A.Token[1:]
@@ -90,7 +90,7 @@ func TestTokenLength(t *testing.T) {
 	testRequest1A.Token = token
 }
 
-// Sanity check: token fails validation if the request is changed.
+// TestBadRequest checks a case when Sanity check: token fails validation if the request is changed.
 func TestBadRequest(t *testing.T) {
 	testRequest2.Token = testRequest1A.Token
 	if testProvider.Verify(testRequest2) {
@@ -98,14 +98,14 @@ func TestBadRequest(t *testing.T) {
 	}
 }
 
-// Sanity check: a null request should fail to verify.
+// TestNullRequest checks a case when Sanity check: a null request should fail to verify.
 func TestNullRequest(t *testing.T) {
 	if testProvider.Verify(nil) {
 		t.Fatal("null request should fail verification")
 	}
 }
 
-// Sanity check: verify a pre-generated authenticated request.
+// TestPreGenerated checks a case when Sanity check: verify a pre-generated authenticated request.
 func TestPreGenerated(t *testing.T) {
 	in, err := ioutil.ReadFile("testdata/authrequest.json")
 	if err != nil {

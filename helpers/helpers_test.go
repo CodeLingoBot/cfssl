@@ -543,6 +543,7 @@ func sctEquals(sctA, sctB ct.SignedCertificateTimestamp) bool {
 	return false
 }
 
+// TestDeserializeSCTList; 
 // NOTE: TestDeserializeSCTList tests both DeserializeSCTList and
 // SerializeSCTList.
 func TestDeserializeSCTList(t *testing.T) {

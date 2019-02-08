@@ -371,7 +371,7 @@ var Command = &cli.Command{UsageText: serverUsageText, Flags: serverFlags, Main:
 
 var wrapHandler = defaultWrapHandler
 
-// The default wrapper simply returns the normal handler and prefixes the path appropriately
+// defaultWrapHandler; The default wrapper simply returns the normal handler and prefixes the path appropriately
 func defaultWrapHandler(path string, handler http.Handler, err error) (string, http.Handler, error) {
 	return v1APIPath(path), handler, err
 }
